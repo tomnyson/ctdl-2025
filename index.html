@@ -1,0 +1,72 @@
+<html>
+
+<head>
+    <title>demo độ phức tạp</title>
+</head>
+
+<body>
+    <h1>demo độ phức tạp</h1>
+</body>
+<script>
+    function tinhTong(a, b) {
+        const startTime = performance.now();
+
+        const result = a + b;
+
+        const endTime = performance.now();
+
+        const executionTime = endTime - startTime;
+        return {
+            result,
+            executionTime: `${executionTime.toFixed(6)} ms`
+        };
+    }
+
+    function tinhTong1VongLap(a) {
+        const startTime = performance.now();
+        let s = 0
+        for (let i = 0;i < a;i++) {
+            s += i;
+        }
+        const endTime = performance.now();
+
+        const executionTime = endTime - startTime;
+        return {
+            s,
+            executionTime: `${executionTime.toFixed(6)} ms`
+        };
+    }
+
+
+    function tinhTich2VongLap(a) {
+        const startTime = performance.now(); 
+        let s = 0; 
+
+        for (let i = 0;i < a;i++) {
+            for (let j = 0;j < a;j++) {
+                s += i * j; 
+            }
+        }
+
+        const endTime = performance.now(); 
+        const executionTime = endTime - startTime; 
+
+        return {
+            s, // The calculated sum
+            executionTime: `${executionTime.toFixed(6)} ms` // Execution time in milliseconds
+        };
+    }
+    const { result, executionTime } = tinhTong(1000, 10);
+    const { s: ketqua1, executionTime: thucthi1 } = tinhTong1VongLap(100000);
+    const { s: ketqua2, executionTime: thucthi2 } = tinhTich2VongLap(1000);
+    console.log(`Tong 1: ${result}`);
+    console.log(`Thời gian excute Time: ${executionTime}`);
+
+    console.log(`Tong 2: ${ketqua1}`);
+    console.log(`Thời gian excute Time: ${thucthi1}`);
+
+    console.log(`Tong 3: ${ketqua2}`);
+    console.log(`Thời gian excute Time: ${thucthi2}`);
+</script>
+
+</html>
